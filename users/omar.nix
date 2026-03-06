@@ -1,12 +1,79 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "omar";
   home.homeDirectory = "/home/omar";
 
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11";
+
+  programs.niri.settings = {
+    input.focus-follows-mouse.enable = true;
+    layout.focus-ring.enable = false;
+    outputs = {
+      "HDMI-A-1".mode = {
+        width = 1920;
+        height = 1080;
+        refresh = 74.973;
+      };
+    };
+    binds = {
+      "Mod+1".action.focus-workspace = 1;
+      "Mod+Shift+1".action.move-column-to-workspace = 1;
+      "Mod+2".action.focus-workspace = 2;
+      "Mod+Shift+2".action.move-column-to-workspace = 2;
+      "Mod+3".action.focus-workspace = 3;
+      "Mod+Shift+3".action.move-column-to-workspace = 3;
+      "Mod+4".action.focus-workspace = 4;
+      "Mod+Shift+4".action.move-column-to-workspace = 4;
+      "Mod+5".action.focus-workspace = 5;
+      "Mod+Shift+5".action.move-column-to-workspace = 5;
+
+      "Mod+WheelScrollDown" = {
+        action.focus-workspace-down = [ ];
+        cooldown-ms = 150;
+      };
+      "Mod+WheelScrollUp" = {
+        action.focus-workspace-up = [ ];
+        cooldown-ms = 150;
+      };
+      "Mod+WheelScrollRight".action.focus-column-right = [ ];
+      "Mod+WheelScrollLeft".action.focus-column-left = [ ];
+
+      "Mod+Q".action.close-window = [ ];
+      "Mod+F".action.maximize-column = [ ];
+      "Mod+Shift+F".action.fullscreen-window = [ ];
+
+      "XF86AudioRaiseVolume".action.spawn = [
+        "wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.1+"
+      ];
+      "XF86AudioLowerVolume".action.spawn = [
+        "wpctl"
+        "set-volume"
+        "@DEFAULT_AUDIO_SINK@"
+        "0.1-"
+      ];
+
+      "Mod+Return".action.spawn = [
+        "kitty"
+      ];
+      "Mod+Space".action.spawn = [
+        "vicinae"
+        "toggle"
+      ];
+    };
+    spawn-at-startup = [
+      { command = [ "noctalia-shell" ]; }
+      {
+        command = [
+          "vicinae"
+          "server"
+        ];
+      }
+    ];
+  };
 
   programs.zsh = {
     enable = true;
@@ -27,11 +94,11 @@
           command clear
           fastfetch --config minimal
         }
-
-        denv() {
-          nix develop /etc/nixos#$1
-        }
       fi
+
+      denv() {
+        nix develop /etc/nixos#$1
+      }
     '';
 
     oh-my-zsh = {
@@ -48,61 +115,5 @@
     history.ignoreAllDups = true;
   };
 
-  # The home.packages option allows you to install Nix packages into your environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/omar/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
