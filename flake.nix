@@ -2,6 +2,8 @@
   description = "NixOS system config";
 
   inputs = {
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -12,6 +14,7 @@
   outputs =
     {
       self,
+      niri,
       nixpkgs,
       home-manager,
     }:
@@ -22,9 +25,15 @@
     {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inputs = { inherit niri; };
+        };
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
+          {
+            home-manager.backupFileExtension = "backup";
+          }
         ];
       };
 
