@@ -27,6 +27,10 @@
           command clear
           fastfetch --config minimal
         }
+
+        denv() {
+          nix develop /etc/nixos#$1
+        }
       fi
     '';
 
