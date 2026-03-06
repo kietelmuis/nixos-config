@@ -14,4 +14,12 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelModules = [ "msi-ec" ];
   boot.extraModulePackages = [ pkgs.linuxPackages_zen.msi-ec ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  boot.loader.grub.configurationLimit = 3;
 }

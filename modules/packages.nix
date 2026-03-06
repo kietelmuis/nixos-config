@@ -2,10 +2,10 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [ "Inter Variable" ];
+    serif = [ "Inter Variable" ];
+    monospace = [ "Maple Mono NF" ];
   };
 
   fonts.packages = with pkgs; [
