@@ -6,9 +6,9 @@
     device = "nodev";
     useOSProber = true;
     efiSupport = true;
+    efiInstallAsRemovable = true;
   };
 
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
