@@ -15,6 +15,7 @@
 
   services.flatpak.enable = true;
 
+  virtualisation.waydroid.enable = true;
   virtualisation.docker = {
     enable = true;
   };
@@ -44,6 +45,7 @@
   };
 
   services.upower.enable = true;
+
   programs.niri.enable = true;
   programs.steam.enable = true;
 
@@ -69,6 +71,9 @@
     wine64
     pear-desktop
     prismlauncher
+    transmission_4-gtk
+    mpv
+    jadx
     httptoolkit
     android-tools
     cloudflare-warp
@@ -78,6 +83,7 @@
     xwayland
     mcontrolcenter
     wget
+    waydroid
     niri
     noctalia-shell
     p7zip
