@@ -28,6 +28,19 @@
     package = pkgs.jre;
   };
 
+  services.dbus.enable = true;
+  xdg.portal.enable = true;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+    wireplumber.enable = true;
+  };
+
   environment.variables = {
     EDITOR = "zed";
     VISUAL = "micro";
@@ -36,11 +49,6 @@
   };
 
   environment.sessionVariables = {
-    LD_LIBRARY_PATH =
-      with pkgs;
-      lib.makeLibraryPath [
-        fontconfig
-      ];
     DOTNET_ROOT = "${pkgs.dotnet-sdk_10}/share/dotnet";
   };
 
@@ -57,6 +65,7 @@
       openssl
       zlib
       stdenv.cc.cc.lib
+      fontconfig
     ];
   };
 
@@ -74,6 +83,8 @@
     transmission_4-gtk
     mpv
     jadx
+    pwvucontrol
+    brightnessctl
     httptoolkit
     android-tools
     cloudflare-warp
