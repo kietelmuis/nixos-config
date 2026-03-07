@@ -10,42 +10,42 @@
     input.focus-follows-mouse.enable = true;
     layout.focus-ring.enable = false;
     outputs = {
-      "HDMI-A-1".mode = {
+      "HDMI-A-1".Alte = {
         width = 1920;
         height = 1080;
         refresh = 74.973;
       };
     };
     binds = {
-      "Mod+1".action.focus-workspace = 1;
-      "Mod+2".action.focus-workspace = 2;
-      "Mod+3".action.focus-workspace = 3;
-      "Mod+4".action.focus-workspace = 4;
-      "Mod+5".action.focus-workspace = 5;
+      "Alt+1".action.focus-workspace = 1;
+      "Alt+2".action.focus-workspace = 2;
+      "Alt+3".action.focus-workspace = 3;
+      "Alt+4".action.focus-workspace = 4;
+      "Alt+5".action.focus-workspace = 5;
 
-      "Mod+Shift+1".action.move-column-to-workspace = 1;
-      "Mod+Shift+2".action.move-column-to-workspace = 2;
-      "Mod+Shift+3".action.move-column-to-workspace = 3;
-      "Mod+Shift+4".action.move-column-to-workspace = 4;
-      "Mod+Shift+5".action.move-column-to-workspace = 5;
+      "Alt+Shift+1".action.move-column-to-workspace = 1;
+      "Alt+Shift+2".action.move-column-to-workspace = 2;
+      "Alt+Shift+3".action.move-column-to-workspace = 3;
+      "Alt+Shift+4".action.move-column-to-workspace = 4;
+      "Alt+Shift+5".action.move-column-to-workspace = 5;
 
       "Print".action.screenshot-screen = [ ];
       "Alt+S".action.screenshot = [ ];
 
-      "Mod+WheelScrollDown" = {
+      "Alt+WheelScrollDown" = {
         action.focus-workspace-down = [ ];
         cooldown-ms = 150;
       };
-      "Mod+WheelScrollUp" = {
+      "Alt+WheelScrollUp" = {
         action.focus-workspace-up = [ ];
         cooldown-ms = 150;
       };
-      "Mod+WheelScrollRight".action.focus-column-right = [ ];
-      "Mod+WheelScrollLeft".action.focus-column-left = [ ];
+      "Alt+WheelScrollRight".action.focus-column-right = [ ];
+      "Alt+WheelScrollLeft".action.focus-column-left = [ ];
 
-      "Mod+Q".action.close-window = [ ];
-      "Mod+F".action.maximize-column = [ ];
-      "Mod+Shift+F".action.fullscreen-window = [ ];
+      "Alt+Q".action.close-window = [ ];
+      "Alt+F".action.maximize-column = [ ];
+      "Alt+Shift+F".action.fullscreen-window = [ ];
 
       "XF86AudioRaiseVolume".action.spawn = [
         "wpctl"
@@ -71,10 +71,10 @@
         "5%-"
       ];
 
-      "Mod+Return".action.spawn = [
+      "Alt+Return".action.spawn = [
         "kitty"
       ];
-      "Mod+Space".action.spawn = [
+      "Alt+Space".action.spawn = [
         "vicinae"
         "toggle"
       ];
