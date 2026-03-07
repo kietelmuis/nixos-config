@@ -10,7 +10,7 @@
     input.focus-follows-mouse.enable = true;
     layout.focus-ring.enable = false;
     outputs = {
-      "HDMI-A-1".Alte = {
+      "HDMI-A-1".mode = {
         width = 1920;
         height = 1080;
         refresh = 74.973;
