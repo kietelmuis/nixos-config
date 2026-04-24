@@ -1,7 +1,6 @@
 { ... }:
 {
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -9,5 +8,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.networkmanager.wifi.macAddress = "random";
   hardware.bluetooth.enable = true;
 }

@@ -7,6 +7,7 @@
   home.stateVersion = "24.11";
 
   programs.niri.settings = {
+    prefer-no-csd = true;
     input.focus-follows-mouse.enable = true;
     layout.focus-ring.enable = false;
     outputs = {
@@ -29,8 +30,18 @@
       "Alt+Shift+4".action.move-column-to-workspace = 4;
       "Alt+Shift+5".action.move-column-to-workspace = 5;
 
+      "Alt+L".action.spawn = [
+        "noctalia-shell"
+        "ipc"
+        "call"
+        "lockScreen"
+        "lock"
+      ];
       "Print".action.screenshot-screen = [ ];
-      "Alt+S".action.screenshot = [ ];
+      "Alt+V".action.spawn = [
+        "vicinae"
+        "vicinae://launch/clipboard/history"
+      ];
 
       "Alt+WheelScrollDown" = {
         action.focus-workspace-down = [ ];
@@ -72,7 +83,7 @@
       ];
 
       "Alt+Return".action.spawn = [
-        "kitty"
+        "ghostty"
       ];
       "Alt+Space".action.spawn = [
         "vicinae"

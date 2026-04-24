@@ -18,7 +18,6 @@
       discord
       arduino-cli
       docker-compose
-      dotnet-ef
     ];
   };
 }

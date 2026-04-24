@@ -13,6 +13,7 @@
     maple-mono.NF
   ];
 
+  services.cpupower-gui.enable = true;
   services.flatpak.enable = true;
 
   virtualisation.waydroid.enable = true;
@@ -30,6 +31,7 @@
 
   services.dbus.enable = true;
   xdg.portal.enable = true;
+  services.tailscale.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -49,7 +51,7 @@
   };
 
   environment.sessionVariables = {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk_10}/share/dotnet";
+    DOTNET_ROOT = "${pkgs.dotnet-sdk}/share/dotnet";
   };
 
   services.upower.enable = true;
@@ -60,7 +62,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      dotnet-sdk_10
+      dotnet-runtime
       icu
       openssl
       zlib
@@ -69,8 +71,28 @@
     ];
   };
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true; # optional: starts Sunshine automatically on login
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet";
+        user = "greeter";
+      };
+      terminal = {
+        vt = 1;
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
-    dotnet-sdk_10
+    dotnet-sdk
     xwayland-satellite
     localsend
     vscodium
@@ -81,7 +103,6 @@
     pear-desktop
     prismlauncher
     transmission_4-gtk
-    mpv
     jadx
     pwvucontrol
     brightnessctl
@@ -89,18 +110,25 @@
     android-tools
     cloudflare-warp
     gnumake
-    geteduroam-cli
     killall
+    cliphist
+    greetd
+    tuigreet
     xwayland
     mcontrolcenter
     wget
     waydroid
     niri
+    tailscale
+    sunshine
+    gamemode
     noctalia-shell
+    nautilus
     p7zip
     micro
     protobuf
-    kitty
+    ghostty
+    cpupower-gui
     firefox
     vicinae
     upower
@@ -119,7 +147,14 @@
     nixd
     opencode
 
-    (pkgs.heroic.override {
+    (mpv.override {
+      scripts = with pkgs.mpvScripts; [
+        uosc
+        sponsorblock
+      ];
+    })
+
+    (heroic.override {
       extraPkgs =
         pkgs': with pkgs'; [
           gamescope
