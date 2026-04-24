@@ -16,6 +16,13 @@
   boot.kernelParams = [ "nvidia-drm.modeset=1" ];
   boot.extraModulePackages = [ pkgs.linuxPackages_zen.msi-ec ];
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config.common.default = "*";
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   swapDevices = [
     {
       device = "/var/lib/swapfile";
@@ -30,9 +37,10 @@
 
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ]; # ← top level, not inside hardware.nvidia
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;

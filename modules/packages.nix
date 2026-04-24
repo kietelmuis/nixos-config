@@ -11,15 +11,14 @@
   fonts.packages = with pkgs; [
     inter
     maple-mono.NF
+    noto-fonts-cjk-sans
   ];
 
   services.cpupower-gui.enable = true;
   services.flatpak.enable = true;
 
   virtualisation.waydroid.enable = true;
-  virtualisation.docker = {
-    enable = true;
-  };
+  virtualisation.docker.enable = true;
 
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
@@ -44,7 +43,7 @@
   };
 
   environment.variables = {
-    EDITOR = "zed";
+    EDITOR = "zeditor";
     VISUAL = "micro";
     OZONE_PLATFORM = "wayland";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";

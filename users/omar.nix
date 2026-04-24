@@ -6,10 +6,15 @@
 
   home.stateVersion = "24.11";
 
+  programs.ghostty.settings = { };
+
   programs.niri.settings = {
     prefer-no-csd = true;
     input.focus-follows-mouse.enable = true;
-    layout.focus-ring.enable = false;
+    layout = {
+      focus-ring.enable = false;
+      gaps = 5;
+    };
     outputs = {
       "HDMI-A-1".mode = {
         width = 1920;
@@ -113,6 +118,8 @@
     };
 
     initContent = ''
+      bindkey '^H' backward-kill-word
+
       if [[ "$TERM_PROGRAM" == "" ]]; then
         fastfetch --config minimal
 

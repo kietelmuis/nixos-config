@@ -14,6 +14,7 @@
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
+      pear-desktop
       zed-editor
       discord
       arduino-cli
